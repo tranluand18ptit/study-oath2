@@ -1,0 +1,15 @@
+{
+  "name": "oauth-study-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n auth,resource,client -c blue,green,yellow \"npm run dev:auth\" \"npm run dev:resource\" \"npm run dev:client\"",
+    "dev:auth": "cd auth-server && npm run dev",
+    "dev:resource": "cd resource-server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "install:all": "cd auth-server && npm install && cd ../resource-server && npm install && cd ../client && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}
