@@ -1,9 +1,10 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/auth.service';
 
 @Component({
   selector: 'app-callback-page',
+  imports: [RouterLink],
   templateUrl: './callback.page.html',
   styleUrl: './callback.page.scss',
 })
@@ -18,7 +19,7 @@ export class CallbackPageComponent implements OnInit {
     const authenticated = await this.auth.initializeAuth();
 
     if (authenticated) {
-      this.status.set('Access token received. Loading protected profile...');
+      this.status.set('Authorization code verified. Loading protected profile...');
       await this.auth.loadProfile(true);
       await this.router.navigateByUrl(this.auth.getSafeRedirectTarget());
       return;

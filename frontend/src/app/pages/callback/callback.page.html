@@ -6,7 +6,8 @@
     <p class="eyebrow">OAuth Callback</p>
     <h1>{{ status() }}</h1>
     <p class="detail">
-      Angular is exchanging the authorization code for tokens using the auth server token endpoint.
+      Angular is verifying the returned state and exchanging the authorization code with the stored
+      PKCE verifier.
     </p>
 
     @if (error()) {

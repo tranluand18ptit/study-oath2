@@ -37,13 +37,29 @@
   <div class="action-panel">
     <div class="panel-head">
       <p class="eyebrow">Start Here</p>
-      <h2>Sign in through the auth server login form</h2>
-      <p>The credentials are validated by the auth server page, not by Angular.</p>
+      <h2>Sign in directly from Angular</h2>
+      <p>
+        This page starts the authorization transaction, submits credentials, then completes PKCE on
+        the callback.
+      </p>
     </div>
 
-    <button class="primary-button" type="button" (click)="signIn()">
-      Continue to Authorization Server
-    </button>
+    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="signIn()">
+      <label class="field-label" for="username">Username</label>
+      <input id="username" type="text" formControlName="username" autocomplete="username" />
+
+      <label class="field-label" for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        autocomplete="current-password"
+      />
+
+      <button class="primary-button" type="submit" [disabled]="submitting()">
+        {{ submitting() ? 'Starting secure login...' : 'Login with PKCE' }}
+      </button>
+    </form>
 
     @if (auth.isAuthenticated()) {
       <a class="secondary-link" routerLink="/home">Open protected home</a>
@@ -59,9 +75,11 @@
     </div>
 
     <ol class="checklist">
-      <li>Angular redirects to the auth server with PKCE and state.</li>
-      <li>The auth server shows its server-side login screen.</li>
-      <li>The callback route exchanges the code for access and refresh tokens.</li>
+      <li>Angular generates `state`, `code_verifier`, and `code_challenge` locally.</li>
+      <li>
+        The auth server creates a short-lived authorization transaction and validates credentials.
+      </li>
+      <li>The callback route exchanges the authorization code for access and refresh tokens.</li>
       <li>The home page calls the resource server with the bearer token.</li>
     </ol>
   </div>
