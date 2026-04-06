@@ -1,7 +1,8 @@
 const AUTH_SERVER = 'http://localhost:4000';
 const RESOURCE_SERVER = 'http://localhost:5000';
 const CLIENT_ID = 'oauth-study-client';
-const REDIRECT_URI = 'http://localhost:3000/callback';
+// const REDIRECT_URI = 'http://localhost:3000/callback';
+const REDIRECT_URI = 'http://localhost:4200';
 
 export const config = {
   AUTH_SERVER,

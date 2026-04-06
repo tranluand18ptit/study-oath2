@@ -1,0 +1,200 @@
+:host {
+  display: block;
+}
+
+.home-shell {
+  min-height: 100dvh;
+  padding: 1.5rem;
+  display: grid;
+  gap: 1.2rem;
+}
+
+.hero-card,
+.status-card,
+.detail-card {
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.hero-card {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.hero-actions {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+}
+
+.eyebrow {
+  margin: 0 0 0.8rem;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font:
+    600 0.78rem 'IBM Plex Mono',
+    monospace;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.3rem, 5vw, 4.5rem);
+  line-height: 0.96;
+  max-width: 12ch;
+}
+
+h2 {
+  font-size: 1.3rem;
+}
+
+.lead,
+dd,
+li,
+pre,
+.token-preview {
+  color: var(--muted);
+}
+
+.lead {
+  max-width: 42rem;
+  margin: 1rem 0 0;
+  line-height: 1.7;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+.status-card,
+.detail-card {
+  padding: 1.5rem;
+}
+
+dl,
+ul {
+  margin: 1rem 0 0;
+}
+
+dl {
+  display: grid;
+  gap: 0.9rem;
+}
+
+dl div {
+  display: grid;
+  gap: 0.22rem;
+}
+
+dt {
+  font:
+    600 0.8rem 'IBM Plex Mono',
+    monospace;
+  text-transform: uppercase;
+}
+
+dd {
+  margin: 0;
+  word-break: break-word;
+}
+
+ul {
+  padding-left: 1.2rem;
+  line-height: 1.8;
+}
+
+.detail-grid {
+  align-items: start;
+}
+
+.detail-head {
+  margin-bottom: 1rem;
+}
+
+pre,
+.token-preview {
+  margin: 0;
+  padding: 1rem;
+  border-radius: 18px;
+  background: rgba(23, 18, 13, 0.05);
+  font:
+    0.92rem/1.7 'IBM Plex Mono',
+    monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.primary-button,
+.ghost-button,
+.logout-button,
+.ghost-link {
+  min-height: 3.25rem;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.primary-button,
+.ghost-button,
+.logout-button {
+  cursor: pointer;
+}
+
+.primary-button {
+  border: 0;
+  color: #fff7f0;
+  background: linear-gradient(135deg, var(--teal) 0%, #0f4850 100%);
+}
+
+.ghost-button,
+.logout-button,
+.ghost-link {
+  border: 1px solid rgba(23, 18, 13, 0.12);
+  background: rgba(255, 255, 255, 0.48);
+  color: var(--ink);
+}
+
+.ghost-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.logout-button {
+  color: var(--accent-deep);
+}
+
+.error-banner {
+  margin: 1rem 0 0;
+  padding: 0.9rem 1rem;
+  border-radius: 16px;
+  background: rgba(191, 74, 43, 0.14);
+  color: #6b1200;
+}
+
+button:disabled {
+  cursor: progress;
+  opacity: 0.72;
+}
+
+@media (max-width: 960px) {
+  .home-shell {
+    padding: 1rem;
+  }
+
+  .hero-card,
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}

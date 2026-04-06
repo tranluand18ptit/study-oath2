@@ -1,0 +1,17 @@
+<section class="callback-shell">
+  <div class="callback-card">
+    @if (!error()) {
+      <div class="spinner" aria-hidden="true"></div>
+    }
+    <p class="eyebrow">OAuth Callback</p>
+    <h1>{{ status() }}</h1>
+    <p class="detail">
+      Angular is exchanging the authorization code for tokens using the auth server token endpoint.
+    </p>
+
+    @if (error()) {
+      <p class="error-banner">{{ error() }}</p>
+      <a class="login-link" routerLink="/login">Return to login</a>
+    }
+  </div>
+</section>

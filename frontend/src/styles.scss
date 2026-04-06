@@ -1,0 +1,56 @@
+:root {
+  --bg: #f4efe3;
+  --bg-soft: rgba(255, 255, 255, 0.58);
+  --panel: rgba(255, 252, 245, 0.8);
+  --panel-strong: rgba(255, 250, 242, 0.94);
+  --border: rgba(32, 27, 22, 0.12);
+  --ink: #17120d;
+  --muted: #6d6053;
+  --accent: #bf4a2b;
+  --accent-deep: #7d2410;
+  --teal: #1e6a74;
+  --gold: #d08c24;
+  --shadow: 0 22px 60px rgba(67, 47, 26, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: 'Space Grotesk', sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(208, 140, 36, 0.26), transparent 32%),
+    radial-gradient(circle at right 20%, rgba(30, 106, 116, 0.18), transparent 28%),
+    linear-gradient(180deg, #f8f4ea 0%, #efe3cf 100%);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(23, 18, 13, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 18, 13, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(circle at center, black 48%, transparent 100%);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}

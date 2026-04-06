@@ -1,0 +1,68 @@
+<section class="login-shell">
+  <div class="hero-panel">
+    <p class="eyebrow">Angular OAuth2 Demo</p>
+    <h1>Authorization Code + PKCE, wired to your local servers.</h1>
+    <p class="lead">
+      This client redirects to the auth server, exchanges the authorization code for a token, then
+      calls the protected profile endpoint on the resource server.
+    </p>
+
+    <div class="flow-strip">
+      <span>Client</span>
+      <span>Authorize</span>
+      <span>Token</span>
+      <span>Protected API</span>
+    </div>
+
+    <dl class="endpoint-grid">
+      <div>
+        <dt>Auth Server</dt>
+        <dd>http://localhost:4000</dd>
+      </div>
+      <div>
+        <dt>Resource Server</dt>
+        <dd>http://localhost:5000/api/profile</dd>
+      </div>
+      <div>
+        <dt>Client ID</dt>
+        <dd>oauth-study-client</dd>
+      </div>
+      <div>
+        <dt>Redirect URI</dt>
+        <dd>http://localhost:3000/callback</dd>
+      </div>
+    </dl>
+  </div>
+
+  <div class="action-panel">
+    <div class="panel-head">
+      <p class="eyebrow">Start Here</p>
+      <h2>Sign in through the auth server login form</h2>
+      <p>The credentials are validated by the auth server page, not by Angular.</p>
+    </div>
+
+    <button class="primary-button" type="button" (click)="signIn()">
+      Continue to Authorization Server
+    </button>
+
+    @if (auth.isAuthenticated()) {
+      <a class="secondary-link" routerLink="/home">Open protected home</a>
+    }
+
+    @if (auth.authError()) {
+      <p class="error-banner">{{ auth.authError() }}</p>
+    }
+
+    <div class="credential-card">
+      <span class="label">Demo credentials</span>
+      <strong>alice / password123</strong>
+    </div>
+
+    <ol class="checklist">
+      <li>Angular redirects to the auth server with PKCE and state.</li>
+      <li>The auth server shows its server-side login screen.</li>
+      <li>The callback route exchanges the code for access and refresh tokens.</li>
+      <li>The home page calls the resource server with the bearer token.</li>
+    </ol>
+  </div>
+</section>

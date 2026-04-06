@@ -1,0 +1,93 @@
+<section class="home-shell">
+  <header class="hero-card">
+    <div>
+      <p class="eyebrow">Protected Home</p>
+      <h1>Bearer token accepted. Resource server response loaded.</h1>
+      <p class="lead">
+        This page is protected by Angular routing, populated from the auth server token response,
+        and verified again by the resource server JWT middleware.
+      </p>
+    </div>
+
+    <div class="hero-actions">
+      <a class="ghost-link" routerLink="/login">Back to login</a>
+      <button
+        class="ghost-button"
+        type="button"
+        (click)="renewAccessToken()"
+        [disabled]="refreshingToken()"
+      >
+        {{ refreshingToken() ? 'Refreshing token...' : 'Refresh token' }}
+      </button>
+      <button
+        class="primary-button"
+        type="button"
+        (click)="reloadProfile()"
+        [disabled]="loadingProfile()"
+      >
+        {{ loadingProfile() ? 'Loading profile...' : 'Reload protected profile' }}
+      </button>
+      <button class="logout-button" type="button" (click)="signOut()" [disabled]="loggingOut()">
+        {{ loggingOut() ? 'Logging out...' : 'Logout' }}
+      </button>
+    </div>
+  </header>
+
+  <div class="card-grid">
+    <article class="status-card">
+      <h2>Session</h2>
+      <dl>
+        <div>
+          <dt>User</dt>
+          <dd>{{ auth.username() }}</dd>
+        </div>
+        <div>
+          <dt>Scope</dt>
+          <dd>{{ auth.grantedScope() || 'openid profile' }}</dd>
+        </div>
+        <div>
+          <dt>Token Expires</dt>
+          <dd>{{ expiresLabel() }}</dd>
+        </div>
+        <div>
+          <dt>Refresh Token</dt>
+          <dd>{{ auth.refreshToken() ? 'Available' : 'Missing' }}</dd>
+        </div>
+      </dl>
+    </article>
+
+    <article class="status-card">
+      <h2>Flow Check</h2>
+      <ul>
+        <li>Authorization endpoint: http://localhost:4000/authorize</li>
+        <li>Token endpoint: http://localhost:4000/token</li>
+        <li>Protected API: http://localhost:5000/api/profile</li>
+        <li>Redirect callback: http://localhost:3000/callback</li>
+      </ul>
+    </article>
+  </div>
+
+  <div class="card-grid detail-grid">
+    <article class="detail-card">
+      <div class="detail-head">
+        <p class="eyebrow">Access Token</p>
+        <h2>Stored by angular-oauth2-oidc</h2>
+      </div>
+      <p class="token-preview">{{ tokenPreview() }}</p>
+      @if (auth.authError()) {
+        <p class="error-banner">{{ auth.authError() }}</p>
+      }
+    </article>
+
+    <article class="detail-card">
+      <div class="detail-head">
+        <p class="eyebrow">Resource Payload</p>
+        <h2>Verified JWT claims from the resource server</h2>
+      </div>
+      <pre>{{ profileJson() }}</pre>
+      @if (auth.profileError()) {
+        <p class="error-banner">{{ auth.profileError() }}</p>
+      }
+    </article>
+  </div>
+</section>
